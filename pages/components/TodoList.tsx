@@ -1,24 +1,29 @@
-import { useState } from "react";
-import { Reorder } from "framer-motion";
+import { useContext } from "react";
+import { Reorder } from 'framer-motion';
 
 import Card from "./Card";
 import CardFooter from "./CardFooter";
 import TodoItem from "./TodoItem";
 
-import { Todo, TodoList } from "../types";
+import { Todo, FilterValue } from "../types";
+import { PageContext } from "@/store";
+import { setFilter } from "@/store/actions";
+import { getListFiltered } from "@/utils";
 
-const TodoList = ({ list }: TodoList) => {
-  const [listFiltered, filterList] = useState<Array<Todo>>(list);
-  const [filterApplied, setFilter] = useState<string>('all');
+const TodoList = () => {
+  const { dispatch, state: { listFiltered = [], filterApplied, remainingLength, list } } = useContext(PageContext);
+
+  const handleSetFilter = (value: FilterValue) => {
+    const newList = getListFiltered(list, value);
+    setFilter(dispatch, value, newList)
+  }
 
   return (
     <section className="my-10">
-      <Card footer={CardFooter({length: list.length, filterApplied, setFilter})}>
-        <ul>
-          <Reorder.Group axis="y" onReorder={filterList} values={listFiltered}>
-            {listFiltered.map((todo: Todo) => <TodoItem key={todo.id} item={todo} />)}
-          </Reorder.Group>
-        </ul>
+      <Card footer={CardFooter({length: remainingLength, filterApplied, setFilter: handleSetFilter})}>
+        <Reorder.Group axis="y" onReorder={() => {}} values={listFiltered}>
+          {listFiltered?.map((todo: Todo) => <TodoItem key={todo.id} item={todo} />)}
+        </Reorder.Group>
       </Card>
     </section>
   )

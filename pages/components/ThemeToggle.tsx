@@ -3,6 +3,8 @@ import Image from "next/image";
 import { ThemeToggle } from "../types";
 
 const ThemeToggle = ({onClick, theme} : ThemeToggle) => {
+  const { alt, src } = theme === 'light' ? { alt: "Use Dark Mode", src: "/moon.svg" } : { alt: "Use Light Mode", src: "/sun.svg" };
+
   const handleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     onClick(newTheme)
@@ -17,11 +19,7 @@ const ThemeToggle = ({onClick, theme} : ThemeToggle) => {
         className='absolute p-3 right-8 top-10 rounded-lg md:hover:bg-light-card md:right-0 md:top-12 md:p-4 md:dark:hover:bg-dark-card'
         onClick={handleTheme}
       >
-        {theme === 'light' ? (
-          <Image alt="Use Dark Mode" src="/moon.svg" width={20} height={20} />
-        ) : (
-          <Image alt="Use Light Mode" src="/sun.svg" width={20} height={20} />
-        )}
+        <Image alt={alt} src={src} width={20} height={20} />
       </button>
     </div>
   )

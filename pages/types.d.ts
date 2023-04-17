@@ -1,8 +1,20 @@
 export interface Todo {
-  id: number,
+  id: string,
   label: string,
   done: boolean,
 }
+
+export interface TodoWOId {
+  label: string,
+  done: boolean,
+}
+
+export interface Filters {
+  active: Todo[] | Array,
+  completed: Todo[] | Array,
+}
+
+export type FilterValue = 'active' | 'completed';
 
 export type Card = {
   children: React.ReactElement,
@@ -11,8 +23,9 @@ export type Card = {
 
 export type CardRowContent = {
   children: React.ReactElement | string,
-  isDone?: boolean = false,
-  action?: any,
+  isDone?: boolean,
+  actionable?: boolean,
+  onAction?: any,
 }
 
 export type ThemeToggle = {
@@ -21,7 +34,7 @@ export type ThemeToggle = {
 }
 
 export type TodoList = {
-  list: Array<Todo>
+  list: Todo[]
 }
 
 export type TodoItem = {
@@ -30,7 +43,7 @@ export type TodoItem = {
 
 export type CardFooter = {
   length: number,
-  filterApplied: string = 'all',
+  filterApplied: string,
   setFilter: any,
 }
 

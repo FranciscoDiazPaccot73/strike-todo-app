@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app'
 import dynamic from "next/dynamic";
 import { useEffect, useState } from 'react'
 
+import PageProvider from '@/store';
+
 import '@/styles/globals.scss'
 
 const ThemeToggle = dynamic(() => import('./components/ThemeToggle'));
@@ -19,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className='relative'>
       <ThemeToggle onClick={setTheme} theme={theme} />
-      <Component {...pageProps} />
+      <PageProvider>
+        <Component {...pageProps} />
+      </PageProvider>
     </main>
   )
 }
