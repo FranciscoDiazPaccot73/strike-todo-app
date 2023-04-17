@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+
+:root {
+  --color-dark: #181823;
+  --color-light: #fdfdfd;
+  --secondary-color: #181823;
+  --blue: #1f1fee;
+  --purple: #a044e5;
+  --disabled: #767783;
+}
+
+.dark {
+  --color-bg: var(--color-dark);
+}
+
+.light {
+  --color-bg: var(--color-light);
+}
+
+html,
+body {
+  background-color: var(--color-bg);
+}
+
+@tailwind utilities;
