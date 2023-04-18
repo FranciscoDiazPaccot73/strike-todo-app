@@ -1,16 +1,13 @@
 import { Todo } from "@/pages/types";
 
-interface Modal {
-  text: string,
-}
-
 type StateType = {
-  list: Todo[],
+  list: Todo[] | Array,
   listFiltered: Todo[] | Array,
   filterApplied: string,
   remainingLength: number,
   isFetching: boolean,
-  modal: Modal | null
+  modal: Todo[] | null,
+  doneTasks: Todo[] | Array,
 }
 
 export type AppContextType = {

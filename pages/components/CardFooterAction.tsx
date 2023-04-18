@@ -1,12 +1,17 @@
 import { CardFooterAction } from "../types";
 
-const CardFooterAction = ({ isActive, label, onClick }: CardFooterAction) => {
+const CardFooterAction = ({ isActive, label, onClick, disabled }: CardFooterAction) => {
   const appliedClasses = "text-black dark:text-white";
+  const statusClasses = !disabled ? 'hover:text-black dark:hover:text-white' : 'cursor-not-allowed';
+
+  const handleClick = () => {
+    if (!disabled) onClick(label.toLowerCase())
+  }
 
   return (
     <button
-      className={`hover:text-black dark:hover:text-white ${isActive ? appliedClasses : ''}`}
-      onClick={() => onClick(label.toLowerCase())}
+      className={`${statusClasses} ${isActive ? appliedClasses : ''}`}
+      onClick={handleClick}
     >
       {label}
     </button>

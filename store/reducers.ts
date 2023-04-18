@@ -1,5 +1,5 @@
 import { Todo } from "@/pages/types";
-import { getListFiltered, getRemaining } from "@/utils";
+import { getDoneTasks, getListFiltered, getRemaining } from "@/utils";
 
 export const types = {
   FETCHING: 'FETCHING',
@@ -11,7 +11,7 @@ export const types = {
   SET_LIST: 'set/LIST',
   SET_MODAL_CONTENT: 'set/MODAL_CONTENT', 
   UPDATE_ITEM: 'update/ITEM',
-  REMOVE_ITEM: 'remove/ITEM',
+  REMOVE_ITEMS: 'remove/ITEMS',
   ADD_ITEM: 'add/ITEM',
 };
 
@@ -22,6 +22,7 @@ export const init = (config: any) => {
     listFiltered: [],
     filterApplied: 'all',
     remainingLength: 0,
+    doneTasks: [],
   };
 };
 
@@ -60,26 +61,34 @@ export const reducer = (state: any, action: any) => {
       });
 
       const newListFiltered = getListFiltered(newList, filterApplied);
+      const newDoneTasks = getDoneTasks(newList);
       const newRemaining = getRemaining(newList);
 
-      return { ...state, list: newList, listFiltered: newListFiltered, remainingLength: newRemaining };
+      return { ...state, doneTasks: newDoneTasks, list: newList, listFiltered: newListFiltered, remainingLength: newRemaining };
     }
     case types.ADD_ITEM: {
       const { newInfo } = action;
       const { filterApplied } = state;
 
       const newListFiltered = getListFiltered(newInfo, filterApplied);
+      const newDoneTasks = getDoneTasks(newInfo);
       const newRemaining = getRemaining(newInfo);
 
-      return { ...state, list: newInfo, listFiltered: newListFiltered, remainingLength: newRemaining };
+      return { ...state, doneTasks: newDoneTasks, list: newInfo, listFiltered: newListFiltered, remainingLength: newRemaining };
     }
-    case types.REMOVE_ITEM: {
-      const { id } = action;
-      const { listFiltered, list } = state;
+    case types.REMOVE_ITEMS: {
+      const { ids } = action;
+      const { listFiltered, list, remainingLength } = state;
 
-      const newListFiltered = listFiltered.filter((item: Todo) => item.id !== id)
-      const newInfo = list.filter((item: Todo) => item.id !== id);
-      const newRemaining = getRemaining(newInfo);
+      let newListFiltered: Todo[] = listFiltered;
+      let newInfo: Todo[] = list;
+      let newRemaining: number = remainingLength;
+
+      ids.forEach((id: string) => {
+        newListFiltered = newListFiltered.filter((item: Todo) => item.id !== id)
+        newInfo = newInfo.filter((item: Todo) => item.id !== id);
+        newRemaining = getRemaining(newInfo);
+      });
 
       return { ...state, list: newInfo, listFiltered: newListFiltered, remainingLength: newRemaining };
     }

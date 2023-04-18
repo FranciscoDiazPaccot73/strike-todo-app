@@ -11,6 +11,7 @@ const contextDefaultValues = {
     remainingLength: 0,
     isFetching: false,
     modal: null,
+    doneTasks: [],
   },
   dispatch: () => {},
 };

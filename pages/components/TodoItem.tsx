@@ -4,7 +4,7 @@ import { RoughNotation } from "react-rough-notation";
 import CardRowContent from "./CardRowContent";
 
 import { PageContext } from "@/store";
-import { updateInfo, deleteDoc } from "@/store/actions";
+import { updateInfo, setModalContent } from "@/store/actions";
 
 import { TodoItem } from "../types";
 
@@ -18,7 +18,8 @@ const TodoItem = ({ item }: TodoItem) => {
   }
 
   const handleDeteleDoc = () => {
-    deleteDoc(dispatch, item.id);
+    const modalContent = [item]
+    setModalContent(dispatch, modalContent);
   }
 
   return (

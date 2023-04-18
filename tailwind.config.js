@@ -26,11 +26,13 @@ module.exports = {
           bg: '#F4F4F4',
           text: '#333333',
           'card': '#4a4a4f',
+          'modal': '#373950',
         },
         dark: {
           bg: '#1E1E1E',
           text: '#F4F4F4',
           'card': '#25273b',
+          'modal': '#373950',
         },
       },
       keyframes: {

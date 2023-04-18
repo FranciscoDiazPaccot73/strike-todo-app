@@ -23,8 +23,9 @@ export const setFilteredItems = (dispatch: React.Dispatch<any>, items: Todo[]) =
 
 export const setInitialValues = (dispatch: React.Dispatch<any>, list: Todo[]) => {
   const remainingLength = list.filter((element: Todo) => !element.done).length;
+  const doneTasks = list.filter((element: Todo) => element.done);
 
-  dispatch({ type: types.SET_INITIAL_VALUES, values: { list, listFiltered: list, remainingLength, filterApplied: 'all' } });
+  dispatch({ type: types.SET_INITIAL_VALUES, values: { list, doneTasks, listFiltered: list, remainingLength, filterApplied: 'all' } });
 }
 
 export const updateInfo = async (dispatch: React.Dispatch<any>, newValues: Todo) => {
@@ -43,9 +44,22 @@ export const createNewDoc = async (dispatch: React.Dispatch<any>, newValue: Todo
   dispatch({ type: types.ADD_ITEM, newInfo });
 }
 
-export const deleteDoc = async (dispatch: React.Dispatch<any>, id: string) => {
+export const deleteDoc = async (id: string) => {
+  return await deleteDocument(id);
+}
+
+export const deleteDocs = async (dispatch: React.Dispatch<any>, todos: Todo[]) => {
   isFetching(dispatch, true);
-  await deleteDocument(id);
-  dispatch({ type: types.REMOVE_ITEM, id });
+  const ids: string[] = [];
+  const promises: any[] = [];
+
+  todos.forEach(async (todo: Todo) => {
+    ids.push(todo.id);
+    promises.push(await deleteDoc(todo.id));
+  })
+
+  await Promise.all(promises);
+
+  dispatch({ type: types.REMOVE_ITEMS, ids });
   isFetching(dispatch, false);
 }
