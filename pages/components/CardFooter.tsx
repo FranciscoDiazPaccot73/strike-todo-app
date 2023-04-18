@@ -18,7 +18,7 @@ const CardFooter = ({ length, filterApplied, setFilter }: CardFooter) => {
   }
 
   return (
-    <div className="grid grid-cols-2 justify-between p-4 text-gray-disabled md:flex md:flex-row">
+    <div className="grid grid-cols-2 justify-between p-4 text-gray-disabled border-t border-gray-40 md:flex md:flex-row">
       <p>{length} remaining</p>
       <div className="mt-7 flex gap-5 order-1 md:order-none md:mt-0 md:gap-3">
         <CardFooterAction disabled={isFetching} isActive={filterApplied === 'all'} label="All" onClick={setFilter} />

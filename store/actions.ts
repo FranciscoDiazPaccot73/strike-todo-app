@@ -30,8 +30,10 @@ export const setInitialValues = (dispatch: React.Dispatch<any>, list: Todo[]) =>
 
 export const updateInfo = async (dispatch: React.Dispatch<any>, newValues: Todo) => {
   const { id } = newValues;
+  isFetching(dispatch, true);
   await updateDocument(newValues, id);
   
+  isFetching(dispatch, false);
   dispatch({ type: types.UPDATE_ITEM, item: newValues })
 }
 

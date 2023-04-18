@@ -28,7 +28,7 @@ const Home = ({ list }: TodoList) => {
   }
   
   return (
-    <div className="min-h-screen w-full px-8">
+    <div className="w-full px-8 pb-40">
       <section className="flex place-items-center absolute top-0 left-0 -z-10 w-full h-64 overflow-hidden opacity-90 md:h-72">
         <div className='relative w-full h-full'>
           <div className='w-full h-full z-10 absolute bg-gradient-to-r from-blue-80 to-purple-80' />

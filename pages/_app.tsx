@@ -7,6 +7,7 @@ import PageProvider from '@/store';
 import '@/styles/globals.scss'
 
 const ThemeToggle = dynamic(() => import('./components/ThemeToggle'));
+const Footer = dynamic(() => import('./components/Footer'));
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<string>('light')
@@ -19,11 +20,12 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <main className='relative'>
+    <main className='relative min-h-screen'>
       <ThemeToggle onClick={setTheme} theme={theme} />
       <PageProvider>
         <Component {...pageProps} />
       </PageProvider>
+      <Footer />
     </main>
   )
 }
