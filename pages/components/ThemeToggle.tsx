@@ -8,7 +8,6 @@ const ThemeToggle = ({onClick, theme} : ThemeToggle) => {
   const handleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     onClick(newTheme)
-    console.log(newTheme)
     document.body.classList.remove('light', 'dark')
     document.body.classList.add(newTheme)
   }

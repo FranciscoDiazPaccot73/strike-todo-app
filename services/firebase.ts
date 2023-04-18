@@ -1,4 +1,4 @@
-import { updateDoc, getDocs, getDoc, doc, collection, query, where, addDoc } from 'firebase/firestore';
+import { updateDoc, getDocs, deleteDoc, doc, collection, addDoc } from 'firebase/firestore';
 
 import { database } from "../firebaseConfig";
 import { Todo, TodoWOId } from '../pages/types';
@@ -25,4 +25,9 @@ export const createDoc = async (info: TodoWOId) => {
   const response = await addDoc(dbInstance, {...info})
   
   return response?.id;
+}
+
+export const deleteDocument = async (id: string) => {
+  const reference = doc(dbInstance, id);
+  await deleteDoc(reference);
 }

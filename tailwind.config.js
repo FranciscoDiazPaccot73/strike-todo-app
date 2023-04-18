@@ -13,7 +13,7 @@ module.exports = {
         complete: 'url(/check.svg)',
       },
       width: {
-        'calc': 'calc(100% - 40px)',
+        'calc': 'calc(100% - 50px)',
       },
       colors: {
         'blue': '#1f1fee',

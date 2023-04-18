@@ -1,7 +1,7 @@
 import { types } from './reducers';
 import { Todo, TodoWOId } from '@/pages/types';
 
-import { updateDocument, createDoc, getInfo } from '@/services/firebase';
+import { updateDocument, createDoc, getInfo, deleteDocument } from '@/services/firebase';
 
 export const isFetching = (dispatch: React.Dispatch<any>, value: boolean) => {
   dispatch({ type: types.FETCHING, value });
@@ -11,6 +11,11 @@ export const setFilter = (dispatch: React.Dispatch<any>, filter: string, items: 
   dispatch({ type: types.SET_FILTERED_ITEMS, value: items });
   dispatch({ type: types.SET_FILTER_APPLIED, filter });
 };
+
+export const setFilteredItems = (dispatch: React.Dispatch<any>, items: Todo[]) => {
+  dispatch({ type: types.SET_FILTERED_ITEMS, value: items });
+  dispatch({ type: types.SET_LIST, items });
+}
 
 export const setInitialValues = (dispatch: React.Dispatch<any>, list: Todo[]) => {
   const remainingLength = list.filter((element: Todo) => !element.done).length;
@@ -32,4 +37,11 @@ export const createNewDoc = async (dispatch: React.Dispatch<any>, newValue: Todo
   const newInfo = await getInfo();
   isFetching(dispatch, false);
   dispatch({ type: types.ADD_ITEM, newInfo });
+}
+
+export const deleteDoc = async (dispatch: React.Dispatch<any>, id: string) => {
+  isFetching(dispatch, true);
+  await deleteDocument(id);
+  dispatch({ type: types.REMOVE_ITEM, id });
+  isFetching(dispatch, false);
 }

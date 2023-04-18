@@ -1,9 +1,11 @@
 import Image from 'next/image'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { Inter } from 'next/font/google'
+import { motion  } from 'framer-motion';
 
 import NewTodo from './components/NewTodo'
 import TodoListComponent from './components/TodoList'
+import Modal from './components/Modal'
 
 import { PageContext } from '@/store';
 import { setInitialValues } from '@/store/actions';
@@ -13,6 +15,7 @@ import { TodoList } from './types'
 const inter = Inter({ subsets: ['latin'] })
 
 const Home = ({ list }: TodoList) => {
+  const [showModal, setShowModal] = useState(true);
   const { dispatch } = useContext(PageContext);
   useEffect(() => {
     setInitialValues(dispatch, list)
@@ -33,10 +36,19 @@ const Home = ({ list }: TodoList) => {
           />
         </div>
       </section>
-      <section className='max-w-3xl mx-auto'>
-        <p className='py-10 font-bold text-4xl dark:text-white md:py-14'>TODO</p>
-        <NewTodo />
-        <TodoListComponent />
+      <section className='max-w-3xl mx-auto relative'>
+        <motion.div
+          animate={{
+            scale: showModal ? 0.95 : 1,
+            opacity: showModal ? 0.5 : 1
+          }}
+          transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+        >
+          <p className='py-10 font-bold text-4xl dark:text-white md:py-14'>TODO</p>
+          <NewTodo />
+          <TodoListComponent />
+        </motion.div>
+        <Modal show={showModal} setShowModal={setShowModal} />
         <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"

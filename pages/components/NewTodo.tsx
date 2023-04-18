@@ -11,7 +11,6 @@ const NewTodo = () => {
   const [inputValue, setValue] = useState<string>('');
 
   useEffect(() => {
-    console.log(isFetching)
     if (!isFetching) setValue('');
   }, [isFetching])
 

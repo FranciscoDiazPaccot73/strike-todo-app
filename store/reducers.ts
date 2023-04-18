@@ -8,7 +8,9 @@ export const types = {
   SET_FILTERED_ITEMS: 'set/FILTERED_ITEMS',
   SET_REMAINING: 'set/REMAINING',
   SET_FILTER_APPLIED: 'set/FILTER_APPLIED',
+  SET_LIST: 'set/LIST',
   UPDATE_ITEM: 'update/ITEM',
+  REMOVE_ITEM: 'remove/ITEM',
   ADD_ITEM: 'add/ITEM',
 };
 
@@ -29,6 +31,9 @@ export const reducer = (state: any, action: any) => {
     }
     case types.SET_FILTERED_ITEMS: {
       return {...state, listFiltered: action.value}
+    }
+    case types.SET_LIST: {
+      return {...state, list: action.items}
     }
     case types.SET_FILTER_APPLIED: {
       return {...state, filterApplied: action.filter}
@@ -62,7 +67,15 @@ export const reducer = (state: any, action: any) => {
       const newListFiltered = getListFiltered(newInfo, filterApplied);
       const newRemaining = getRemaining(newInfo);
 
-      console.log(newListFiltered)
+      return { ...state, list: newInfo, listFiltered: newListFiltered, remainingLength: newRemaining };
+    }
+    case types.REMOVE_ITEM: {
+      const { id } = action;
+      const { listFiltered, list } = state;
+
+      const newListFiltered = listFiltered.filter((item: Todo) => item.id !== id)
+      const newInfo = list.filter((item: Todo) => item.id !== id);
+      const newRemaining = getRemaining(newInfo);
 
       return { ...state, list: newInfo, listFiltered: newListFiltered, remainingLength: newRemaining };
     }
