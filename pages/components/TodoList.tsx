@@ -4,6 +4,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "./Card";
 import CardFooter from "./CardFooter";
 import TodoItem from "./TodoItem";
+import EmptyState from "./EmptyState";
 
 import { Todo, FilterValue } from "../types";
 import { PageContext } from "@/store";
@@ -35,28 +36,30 @@ const TodoList = () => {
   return (
     <section className="my-10">
       <Card footer={CardFooter({length: remainingLength, filterApplied, setFilter: handleSetFilter})}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="listFiltered">
-          {(provided) => (
-            <ul {...provided.droppableProps} ref={provided.innerRef}>
-              {listFiltered.map((todo: Todo, index: number) => (
-                <Draggable key={todo.id} draggableId={todo.id} index={index}>
-                  {(provided) => (
-                    <li
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <TodoItem key={todo.id} item={todo} />
-                    </li>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
+        {listFiltered?.length ? (
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="listFiltered">
+              {(provided) => (
+                <ul {...provided.droppableProps} ref={provided.innerRef}>
+                  {listFiltered.map((todo: Todo, index: number) => (
+                    <Draggable key={todo.id} draggableId={todo.id} index={index}>
+                      {(provided) => (
+                        <li
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TodoItem key={todo.id} item={todo} />
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
+        ) : <EmptyState />}
       </Card>
     </section>
   )

@@ -2,6 +2,11 @@
   "name": "strike-todo-app",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Francisco Diaz Paccot",
+    "email": "fran.diazpaccot@gmail.com",
+    "url": "https://www.franciscodiazpaccot.dev/"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
