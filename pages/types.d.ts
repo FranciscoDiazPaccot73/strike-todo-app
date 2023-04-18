@@ -16,6 +16,12 @@ export interface Filters {
 
 export type FilterValue = 'active' | 'completed';
 
+export type Modal = {
+  content: Todo[] | null,
+  resetModal: any,
+  onAction: any,
+}
+
 export type Card = {
   children: React.ReactElement,
   footer?: React.ReactElement,
@@ -51,4 +57,5 @@ export type CardFooterAction = {
   isActive: boolean,
   label: string,
   onClick: any,
+  disabled?: boolean,
 }

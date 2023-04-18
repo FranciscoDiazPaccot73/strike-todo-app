@@ -14,3 +14,7 @@ export const getListFiltered = (list: Todo[], value: FilterValue) => {
 
   return filters[value] || list;
 }
+
+export const getDoneTasks = (list: Todo[]) => {
+  return list.filter((element: Todo) => element.done);
+}

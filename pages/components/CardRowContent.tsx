@@ -11,7 +11,7 @@ const CardRowContent = ({ isDone, children, actionable, onAction }: CardRowConte
   }
 
   return (
-    <div className="w-full h-full p-4 flex items-center gap-3 relative md:gap-4">
+    <div className="w-full h-full p-4 flex items-center gap-3 relative bg-light-card dark:bg-dark-card md:gap-4">
       <div onClick={handleAction} className={`relative rounded-full w-6 h-6 border border-white z-10 md:h-7 md:w-7 ${actionable ? actionableClasses : ''}`}>
         <div className={`opacity-0 w-full h-full absolute top-0 left-0 md:after:inline-block md:after:w-full md:hover:opacity-100 md:transition-all md:duration-500 ${actionable ? content : ''}`} />
       </div>

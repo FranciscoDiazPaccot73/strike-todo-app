@@ -10,6 +10,8 @@ const contextDefaultValues = {
     filterApplied: 'all',
     remainingLength: 0,
     isFetching: false,
+    modal: null,
+    doneTasks: [],
   },
   dispatch: () => {},
 };

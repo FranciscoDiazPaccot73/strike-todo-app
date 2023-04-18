@@ -8,13 +8,12 @@ const ThemeToggle = ({onClick, theme} : ThemeToggle) => {
   const handleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     onClick(newTheme)
-    console.log(newTheme)
     document.body.classList.remove('light', 'dark')
     document.body.classList.add(newTheme)
   }
 
   return (
-    <div className="relative max-w-3xl mx-auto">
+    <div className="relative max-w-3xl mx-auto z-10">
       <button
         className='absolute p-3 right-8 top-10 rounded-lg md:hover:bg-light-card md:right-0 md:top-12 md:p-4 md:dark:hover:bg-dark-card'
         onClick={handleTheme}
