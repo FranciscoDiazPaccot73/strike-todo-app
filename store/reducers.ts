@@ -9,6 +9,7 @@ export const types = {
   SET_REMAINING: 'set/REMAINING',
   SET_FILTER_APPLIED: 'set/FILTER_APPLIED',
   SET_LIST: 'set/LIST',
+  SET_MODAL_CONTENT: 'set/MODAL_CONTENT', 
   UPDATE_ITEM: 'update/ITEM',
   REMOVE_ITEM: 'remove/ITEM',
   ADD_ITEM: 'add/ITEM',
@@ -37,6 +38,9 @@ export const reducer = (state: any, action: any) => {
     }
     case types.SET_FILTER_APPLIED: {
       return {...state, filterApplied: action.filter}
+    }
+    case types.SET_MODAL_CONTENT: {
+      return {...state, modal: action.modal}
     }
     case types.SET_INITIAL_VALUES: {
       const { values } = action;

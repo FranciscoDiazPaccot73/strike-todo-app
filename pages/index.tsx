@@ -8,15 +8,15 @@ import TodoListComponent from './components/TodoList'
 import Modal from './components/Modal'
 
 import { PageContext } from '@/store';
-import { setInitialValues } from '@/store/actions';
+import { setInitialValues, setModalContent } from '@/store/actions';
 import { getInfo } from '@/services/firebase'
 import { TodoList } from './types'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const Home = ({ list }: TodoList) => {
-  const [showModal, setShowModal] = useState(true);
-  const { dispatch } = useContext(PageContext);
+  const { dispatch, state: { modal } } = useContext(PageContext);
+
   useEffect(() => {
     setInitialValues(dispatch, list)
   }, [])
@@ -39,8 +39,8 @@ const Home = ({ list }: TodoList) => {
       <section className='max-w-3xl mx-auto relative'>
         <motion.div
           animate={{
-            scale: showModal ? 0.95 : 1,
-            opacity: showModal ? 0.5 : 1
+            scale: modal ? 0.95 : 1,
+            opacity: modal ? 0.5 : 1
           }}
           transition={{ type: "spring", bounce: 0, duration: 0.4 }}
         >
@@ -48,7 +48,7 @@ const Home = ({ list }: TodoList) => {
           <NewTodo />
           <TodoListComponent />
         </motion.div>
-        <Modal show={showModal} setShowModal={setShowModal} />
+        <Modal show={modal} setShowModal={setModalContent} />
         <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"

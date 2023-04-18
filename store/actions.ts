@@ -7,6 +7,10 @@ export const isFetching = (dispatch: React.Dispatch<any>, value: boolean) => {
   dispatch({ type: types.FETCHING, value });
 };
 
+export const setModalContent = (dispatch: React.Dispatch<any>, modal: any) => {
+  dispatch({ type: types.SET_MODAL_CONTENT, modal });
+};
+
 export const setFilter = (dispatch: React.Dispatch<any>, filter: string, items: Todo[]) => {
   dispatch({ type: types.SET_FILTERED_ITEMS, value: items });
   dispatch({ type: types.SET_FILTER_APPLIED, filter });

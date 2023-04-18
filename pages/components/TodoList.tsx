@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Reorder } from 'framer-motion';
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 import Card from "./Card";
 import CardFooter from "./CardFooter";
@@ -22,12 +22,41 @@ const TodoList = () => {
     setFilteredItems(dispatch, values)
   }
 
+  const onDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const items = [...listFiltered];
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    handleOrder(items);
+  };
+
   return (
     <section className="my-10">
       <Card footer={CardFooter({length: remainingLength, filterApplied, setFilter: handleSetFilter})}>
-        <Reorder.Group axis="y" onReorder={handleOrder} values={listFiltered}>
-          {listFiltered?.map((todo: Todo) => <TodoItem key={todo.id} item={todo} />)}
-        </Reorder.Group>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="listFiltered">
+          {(provided) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              {listFiltered.map((todo: Todo, index: number) => (
+                <Draggable key={todo.id} draggableId={todo.id} index={index}>
+                  {(provided) => (
+                    <li
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <TodoItem key={todo.id} item={todo} />
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
       </Card>
     </section>
   )
