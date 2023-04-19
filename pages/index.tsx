@@ -54,7 +54,7 @@ const Home = ({ list }: TodoList) => {
           }}
           transition={{ type: "spring", bounce: 0, duration: 0.4 }}
         >
-          <p className='py-10 font-bold text-4xl dark:text-white md:py-14'>{HOME_H1}</p>
+          <p className='py-10 font-bold text-4xl text-main-light dark:text-white md:py-14'>{HOME_H1}</p>
           <NewTodo />
           <TodoListComponent list={list} />
         </motion.div>

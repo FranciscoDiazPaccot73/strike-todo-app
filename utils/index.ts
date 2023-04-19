@@ -30,7 +30,10 @@ const persistInLocalStorage = (theme: string) => {
 
 export const updateBodyClass = (newTheme: string) => {
   document.body.classList.remove('light', 'dark')
-  document.body.classList.add(newTheme)
+  document.body.classList.add(newTheme);
+
+  const htmlEntity = document.getElementById('html');
+  htmlEntity?.classList.remove('light', 'dark')
 
   persistInLocalStorage(newTheme);
 }
