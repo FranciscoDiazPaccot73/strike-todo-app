@@ -8,7 +8,7 @@ import { PageContext } from "@store/index";
 import { setFilter, setInitialValues } from "@store/actions";
 import { getListFiltered } from "@utils/index";
 
-import { FilterValue, TodoList } from "@pages/types";
+import { TodoList } from "@pages/types";
 
 const TodoList = ({ list: initialList }: TodoList) => {
   const { dispatch, state: { listFiltered, filterApplied, remainingLength, list } } = useContext(PageContext);
@@ -18,7 +18,7 @@ const TodoList = ({ list: initialList }: TodoList) => {
     setInitialValues(dispatch, initialList)
   }, [])
 
-  const handleSetFilter = (value: FilterValue) => {
+  const handleSetFilter = (value: string) => {
     const newList = getListFiltered(list, value);
     setFilter(dispatch, value, newList)
   }

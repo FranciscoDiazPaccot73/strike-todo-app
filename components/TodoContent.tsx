@@ -34,11 +34,7 @@ const TodoContent = ({ list: listFiltered }: TodoList) => {
                 {listFiltered.map((todo: Todo, index: number) => (
                   <Draggable key={todo.id} draggableId={todo.id} index={index}>
                     {(provided) => (
-                      <li
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
+                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                         <TodoItem key={todo.id} item={todo} />
                       </li>
                     )}

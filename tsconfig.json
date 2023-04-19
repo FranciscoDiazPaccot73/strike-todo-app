@@ -39,17 +39,15 @@
         "./components/*"
       ],
     },
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "@types/testing-library__jest-dom"],
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "firebaseConfig.js",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
   ],
   "exclude": [
-    "node_modules", ".next"
-  ]
+    "node_modules", ".next", "**/*.spec.tsx"
+  ],
 }

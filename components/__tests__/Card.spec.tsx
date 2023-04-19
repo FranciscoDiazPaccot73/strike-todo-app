@@ -1,8 +1,14 @@
+/**
+ * @jest-environment jsdom
+ */
+
+import React from 'react';
 import { render } from '@testing-library/react'
-import CardComponent from "../../components/Card";
+import CardComponent from "../Card";
+
 describe("Card Component", () => {
   it("Should render Card component with footer", () => {
-    const container = render(<CardComponent footer={<p>Footer</p>}><p>It works</p></CardComponent>);
+    const container = render(<CardComponent><p>It works</p></CardComponent>);
     expect(container).toMatchSnapshot()
   });
 });

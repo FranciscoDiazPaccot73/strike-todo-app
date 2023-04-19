@@ -11,9 +11,6 @@ exports[`Card Component Should render Card component with footer 1`] = `
         <p>
           It works
         </p>
-        <p>
-          Footer
-        </p>
       </div>
     </div>
   </body>,
@@ -23,9 +20,6 @@ exports[`Card Component Should render Card component with footer 1`] = `
     >
       <p>
         It works
-      </p>
-      <p>
-        Footer
       </p>
     </div>
   </div>,

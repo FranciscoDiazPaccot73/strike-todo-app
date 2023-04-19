@@ -1,14 +1,19 @@
 import { useState, useContext, useEffect } from 'react';
+import clsx from 'clsx';
 
 import Card from './Card';
 import CardRowContent from './CardRowContent';
 
 import { PageContext } from "@store/index";
 import { createNewDoc } from '@store/actions';
+import { INPUT_CONFIRM } from './utils/constants';
 
 const NewTodo = () => {
   const { dispatch, state: { isFetching } } = useContext(PageContext);
   const [inputValue, setValue] = useState<string>('');
+  const buttonClasses = clsx("absolute right-0 top-1/2 -translate-y-1/2 py-1 pl-3 pr-2 border-l border-l-slate-500 text-white rounded-tr-md rounded-br-md text-center hover:rounded-md md:hover:bg-light-bg dark:md:hover:bg-dark-bg", {
+    "opacity-50": isFetching,
+  })
 
   useEffect(() => {
     if (!isFetching) setValue('');
@@ -26,9 +31,15 @@ const NewTodo = () => {
     }
   }
 
+  const createOnEnter = (e: { key: string; keyCode: number; }) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      handleAddNew()
+    }
+  }
+
   return (
     <Card>
-      <CardRowContent>
+      <CardRowContent checkboxName='Disabled checkbox only for input'>
         <form className='flex w-calc relative'>
           <input
             id='new-todo-input'
@@ -37,14 +48,16 @@ const NewTodo = () => {
             onChange={handleChange}
             placeholder="Create a new ToDo"
             readOnly={isFetching}
+            onKeyUp={createOnEnter}
           />
           {!!inputValue && (
             <button
+              aria-label={`Confirm create ${inputValue}`}
               disabled={isFetching}
               onClick={handleAddNew}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 py-1 pl-3 pr-2 border-l border-l-slate-500 text-white rounded-tr-md rounded-br-md text-center hover:rounded-md md:hover:bg-light-bg dark:md:hover:bg-dark-bg ${isFetching ? 'opacity-50' : ''}`}
+              className={buttonClasses}
             >
-              Create
+              {INPUT_CONFIRM}
             </button>
           )}
         </form>

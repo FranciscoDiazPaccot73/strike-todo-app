@@ -10,7 +10,7 @@ import Modal from '@components/Modal'
 import { PageContext } from '@store/index';
 import { setModalContent, deleteDocs } from '@store/actions';
 import { getInfo } from '@services/firebase'
-
+import { META, HOME_H1 } from '@/utils/constants';
 import { Todo, TodoList } from './types'
 
 const Home = ({ list }: TodoList) => {
@@ -28,9 +28,9 @@ const Home = ({ list }: TodoList) => {
   return (
     <div className="w-full px-8 pb-40">
       <Head>
-        <title>Strike Todo App challenge</title>
-        <meta name="description" content="Francisco Diaz Paccot | Strike Todo App" />
-        <meta name="title" content="Strike Todo App challenge" />
+        <title>{META.TITLE}</title>
+        <meta name="description" content={META.DESCRIPTION} />
+        <meta name="title" content={META.TITLE} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex place-items-center absolute top-0 left-0 w-full h-64 overflow-hidden opacity-90 md:h-72">
@@ -54,7 +54,7 @@ const Home = ({ list }: TodoList) => {
           }}
           transition={{ type: "spring", bounce: 0, duration: 0.4 }}
         >
-          <p className='py-10 font-bold text-4xl dark:text-white md:py-14'>TODO</p>
+          <p className='py-10 font-bold text-4xl dark:text-white md:py-14'>{HOME_H1}</p>
           <NewTodo />
           <TodoListComponent list={list} />
         </motion.div>

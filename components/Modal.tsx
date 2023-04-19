@@ -1,7 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Modal, Todo } from "@pages/types";
 
-const Modal = ({ content, resetModal, onAction }: Modal) => {
+import { Modal, Todo } from "@pages/types";
+import { MODAL } from "./utils/constants";
+
+const Modal = ({ content, resetModal, onAction = () => {} }: Modal) => {
+  const handleAction = () => content && onAction(content);
+  
   return (
     <AnimatePresence>
       {content && (
@@ -20,13 +24,14 @@ const Modal = ({ content, resetModal, onAction }: Modal) => {
             className="absolute t-0 z-10 p-7 bg-light-modal h-auto w-full max-w-xs rounded my-7 shadow-md md:max-w-2xl dark:bg-dark-modal"
           >
             <button
+              aria-label="Close modal"
               onClick={resetModal}
               className="absolute top-0 right-0 -mt-4 -mr-4 bg-light-modal text-white border border-slate-600 h-8 w-8 block mb-2 rounded-full dark:bg-dark-modal"
             >
               &times;
             </button>
             <div className="relative overflow-hidden h-auto w-full">
-              <p className="font-bold text-xl mb-3 dark:text-white">Are you sure you want to delete the following taks?</p>
+              <p className="font-bold text-xl mb-3 dark:text-white">{MODAL.TITLE}</p>
               <ul>
                 {content.map((item: Todo) => (
                   <li className="dark:text-white" key={`modal-${item.id}`}>&#x2022; {item.label}</li>
@@ -34,10 +39,11 @@ const Modal = ({ content, resetModal, onAction }: Modal) => {
               </ul>
               <div className="w-full mt-5 flex justify-end">
                 <button
-                  onClick={() => onAction(content)}
+                  aria-label="Confirm remove done tasks"
+                  onClick={handleAction}
                   className="ml-auto px-2 py-1 rounded-md hover:bg-light-card dark:text-white hover:dark:bg-dark-card"
                 >
-                  Confirm
+                  {MODAL.ACTION}
                 </button>
               </div>
             </div>
@@ -57,7 +63,7 @@ const Modal = ({ content, resetModal, onAction }: Modal) => {
         </div>
       )}
     </AnimatePresence>
-  );
-}
+  )
+};
 
 export default Modal;
