@@ -1,6 +1,6 @@
 const EmptyState = () => {
   const handleClick = () => {
-    const input = document.getElementById('new-todo-input')
+    const input = document?.getElementById('new-todo-input')
     input?.focus();
   }
 

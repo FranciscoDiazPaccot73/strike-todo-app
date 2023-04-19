@@ -1,9 +1,10 @@
 import { useContext } from 'react';
+
 import CardFooterAction from "./CardFooterAction";
 
-import { CardFooter } from "../types";
-import { PageContext } from "@/store";
-import { setModalContent } from '@/store/actions';
+import { CardFooter } from "@pages/types";
+import { PageContext } from "@store/index";
+import { setModalContent } from '@store/actions';
 
 const CardFooter = ({ length, filterApplied, setFilter }: CardFooter) => {
   const { dispatch, state: { isFetching, doneTasks, remainingLength } } = useContext(PageContext);

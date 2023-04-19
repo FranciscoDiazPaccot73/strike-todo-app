@@ -10,33 +10,27 @@ export interface TodoWOId {
 }
 
 export interface Filters {
-  active: Todo[] | Array,
-  completed: Todo[] | Array,
+  active: Todo[],
+  completed: Todo[],
 }
 
 export type FilterValue = 'active' | 'completed';
 
 export type Modal = {
-  content: Todo[] | null,
+  content?: Todo[],
   resetModal: any,
   onAction: any,
 }
 
 export type Card = {
   children: React.ReactElement,
-  footer?: React.ReactElement,
 }
 
 export type CardRowContent = {
   children: React.ReactElement | string,
   isDone?: boolean,
   actionable?: boolean,
-  onAction?: any,
-}
-
-export type ThemeToggle = {
-  onClick: any,
-  theme: string,
+  onAction?: (event: ChangeEvet<HTMLInputElement>) => Todo,
 }
 
 export type TodoList = {

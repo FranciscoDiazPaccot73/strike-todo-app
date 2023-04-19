@@ -1,4 +1,4 @@
-import { CardFooterAction } from "../types";
+import { CardFooterAction } from "@pages/types";
 
 const CardFooterAction = ({ isActive, label, onClick, disabled }: CardFooterAction) => {
   const appliedClasses = "text-black dark:text-white";

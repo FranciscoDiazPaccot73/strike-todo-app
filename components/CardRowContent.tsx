@@ -1,6 +1,6 @@
-import { CardRowContent } from "../types";
+import { CardRowContent } from "@pages/types";
 
-const CardRowContent = ({ isDone, children, actionable, onAction }: CardRowContent) => {
+const CardRowContent = ({ isDone, children, actionable, onAction = () => {} }: CardRowContent) => {
   const ongoingClasses = 'cursor-pointer md:hover:animate-gradient md:hover:bg-gradient-to-r md:hover:from-blue md:hover:to-purple bg-400';
   const doneClasses = 'cursor-pointer bg-gradient-to-r from-blue to-purple after:content-complete md:hover:bg-none md:hover:after:content-none';
   const content = isDone ? 'md:hover:after:content-remove' : 'md:hover:after:content-complete';

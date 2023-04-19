@@ -3,8 +3,8 @@ import { useState, useContext, useEffect } from 'react';
 import Card from './Card';
 import CardRowContent from './CardRowContent';
 
-import { PageContext } from "@/store";
-import { createNewDoc } from '@/store/actions';
+import { PageContext } from "@store/index";
+import { createNewDoc } from '@store/actions';
 
 const NewTodo = () => {
   const { dispatch, state: { isFetching } } = useContext(PageContext);
@@ -29,7 +29,7 @@ const NewTodo = () => {
   return (
     <Card>
       <CardRowContent>
-        <div className='flex w-calc relative'>
+        <form className='flex w-calc relative'>
           <input
             id='new-todo-input'
             className='w-full overflow-hidden text-md shadow-none border-none bg-transparent outline-none text-white rounded-md pr-20 pl-3 md:py-1 md:hover:bg-light-bg dark:md:hover:bg-dark-bg'
@@ -38,7 +38,7 @@ const NewTodo = () => {
             placeholder="Create a new ToDo"
             readOnly={isFetching}
           />
-          {inputValue ? (
+          {!!inputValue && (
             <button
               disabled={isFetching}
               onClick={handleAddNew}
@@ -46,8 +46,8 @@ const NewTodo = () => {
             >
               Create
             </button>
-          ) : null}
-        </div>
+          )}
+        </form>
       </CardRowContent>
     </Card>
   )

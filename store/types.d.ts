@@ -6,7 +6,7 @@ type StateType = {
   filterApplied: string,
   remainingLength: number,
   isFetching: boolean,
-  modal: Todo[] | null,
+  modal?: Todo[],
   doneTasks: Todo[] | Array,
 }
 

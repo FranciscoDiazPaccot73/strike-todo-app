@@ -1,22 +1,20 @@
+import Head from 'next/head';
+import { useContext } from 'react'
 import Image from 'next/image'
-import { useEffect, useContext } from 'react'
 import { motion  } from 'framer-motion';
 
-import NewTodo from './components/NewTodo'
-import TodoListComponent from './components/TodoList'
-import Modal from './components/Modal'
+import NewTodo from '@components/NewTodo'
+import TodoListComponent from '@components/TodoList'
+import Modal from '@components/Modal'
 
-import { PageContext } from '@/store';
-import { setInitialValues, setModalContent, deleteDocs } from '@/store/actions';
-import { getInfo } from '@/services/firebase'
+import { PageContext } from '@store/index';
+import { setModalContent, deleteDocs } from '@store/actions';
+import { getInfo } from '@services/firebase'
+
 import { Todo, TodoList } from './types'
 
 const Home = ({ list }: TodoList) => {
   const { dispatch, state: { modal } } = useContext(PageContext);
-
-  useEffect(() => {
-    setInitialValues(dispatch, list)
-  }, [])
 
   const handleResetModal = () => {
     setModalContent(dispatch, null);
@@ -29,7 +27,13 @@ const Home = ({ list }: TodoList) => {
   
   return (
     <div className="w-full px-8 pb-40">
-      <section className="flex place-items-center absolute top-0 left-0 -z-10 w-full h-64 overflow-hidden opacity-90 md:h-72">
+      <Head>
+        <title>Strike Todo App challenge</title>
+        <meta name="description" content="Francisco Diaz Paccot | Strike Todo App" />
+        <meta name="title" content="Strike Todo App challenge" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <section className="flex place-items-center absolute top-0 left-0 w-full h-64 overflow-hidden opacity-90 md:h-72">
         <div className='relative w-full h-full'>
           <div className='w-full h-full z-10 absolute bg-gradient-to-r from-blue-80 to-purple-80' />
           <Image
@@ -52,7 +56,7 @@ const Home = ({ list }: TodoList) => {
         >
           <p className='py-10 font-bold text-4xl dark:text-white md:py-14'>TODO</p>
           <NewTodo />
-          <TodoListComponent />
+          <TodoListComponent list={list} />
         </motion.div>
         <Modal onAction={handleRemove} content={modal} resetModal={handleResetModal} />
       </section>

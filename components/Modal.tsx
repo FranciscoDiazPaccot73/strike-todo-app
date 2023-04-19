@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Modal, Todo } from "../types";
+import { Modal, Todo } from "@pages/types";
 
 const Modal = ({ content, resetModal, onAction }: Modal) => {
   return (

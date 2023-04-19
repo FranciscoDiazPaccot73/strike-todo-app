@@ -22,16 +22,34 @@
     "paths": {
       "@/*": [
         "./*"
-      ]
-    }
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
+      "@store/*": [
+        "./store/*"
+      ],
+      "@services/*": [
+        "./services/*"
+      ],
+      "@pages/*": [
+        "./pages/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+    },
+    "types": ["node", "jest"],
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "firebaseConfig.js"
+    "firebaseConfig.js",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
   ],
   "exclude": [
-    "node_modules"
+    "node_modules", ".next"
   ]
 }

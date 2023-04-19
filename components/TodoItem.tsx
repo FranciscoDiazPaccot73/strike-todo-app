@@ -3,10 +3,10 @@ import { RoughNotation } from "react-rough-notation";
 
 import CardRowContent from "./CardRowContent";
 
-import { PageContext } from "@/store";
-import { updateInfo, setModalContent } from "@/store/actions";
+import { PageContext } from "@store/index";
+import { updateInfo, setModalContent } from "@store/actions";
 
-import { TodoItem } from "../types";
+import { TodoItem } from "@pages/types";
 
 const TodoItem = ({ item }: TodoItem) => {
   const { dispatch } = useContext(PageContext);

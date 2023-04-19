@@ -1,15 +1,23 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { ThemeToggle } from "../types";
+import { updateBodyClass, getLocalStorageTheme } from "@utils/index";
 
-const ThemeToggle = ({onClick, theme} : ThemeToggle) => {
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState<string | null>('dark');
   const { alt, src } = theme === 'light' ? { alt: "Use Dark Mode", src: "/moon.svg" } : { alt: "Use Light Mode", src: "/sun.svg" };
+
+  useEffect(() => {
+    const newTheme = getLocalStorageTheme();
+    if (newTheme === 'light') {
+      updateBodyClass(newTheme)
+    }
+    setTheme(newTheme)
+  }, [])
 
   const handleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
-    onClick(newTheme)
-    document.body.classList.remove('light', 'dark')
-    document.body.classList.add(newTheme)
+    updateBodyClass(newTheme);
   }
 
   return (
