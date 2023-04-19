@@ -30,7 +30,8 @@ export type CardRowContent = {
   children: React.ReactElement | string,
   isDone?: boolean,
   actionable?: boolean,
-  onAction?: (event: ChangeEvet<HTMLInputElement>) => Todo,
+  onAction?: any,
+  // onAction?: (event: ChangeEvet<HTMLInputElement>) => Todo,
 }
 
 export type TodoList = {
