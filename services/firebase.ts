@@ -18,13 +18,11 @@ export const getInfo = async () => {
 
 export const updateDocument = async (newValues: Todo, id: string) => {
   const reference = doc(dbInstance, id);
-  return await updateDoc(reference, { ...newValues });
+  await updateDoc(reference, { ...newValues });
 }
 
 export const createDoc = async (info: TodoWOId) => {
-  const response = await addDoc(dbInstance, {...info})
-  
-  return response?.id;
+  await addDoc(dbInstance, {...info})
 }
 
 export const deleteDocument = async (id: string) => {

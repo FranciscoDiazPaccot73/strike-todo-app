@@ -30,11 +30,14 @@ export const setInitialValues = (dispatch: React.Dispatch<any>, list: Todo[]) =>
 
 export const updateInfo = async (dispatch: React.Dispatch<any>, newValues: Todo) => {
   const { id } = newValues;
-  isFetching(dispatch, true);
-  await updateDocument(newValues, id);
-  
-  isFetching(dispatch, false);
+
   dispatch({ type: types.UPDATE_ITEM, item: newValues })
+
+  try {
+    await updateDocument(newValues, id);
+  } catch (err) {
+    dispatch({ type: types.RESET_LIST })
+  }
 }
 
 export const createNewDoc = async (dispatch: React.Dispatch<any>, newValue: TodoWOId) => {
@@ -51,17 +54,18 @@ export const deleteDoc = async (id: string) => {
 }
 
 export const deleteDocs = async (dispatch: React.Dispatch<any>, todos: Todo[]) => {
-  isFetching(dispatch, true);
   const ids: string[] = [];
   const promises: any[] = [];
+  dispatch({ type: types.REMOVE_ITEMS, ids });
 
   todos.forEach(async (todo: Todo) => {
     ids.push(todo.id);
     promises.push(await deleteDoc(todo.id));
   })
 
-  await Promise.all(promises);
-
-  dispatch({ type: types.REMOVE_ITEMS, ids });
-  isFetching(dispatch, false);
+  try {
+    await Promise.all(promises);
+  } catch (err) {
+    dispatch({ type: types.RESET_LIST })
+  }
 }

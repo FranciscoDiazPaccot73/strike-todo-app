@@ -22,10 +22,11 @@ module.exports = {
         'purple-80': '#a044e580',
         'gray-40': '#76778340',
         'gray-disabled': '#767783',
+        'main-light': '#f1f2f5',
         light: {
-          bg: '#F4F4F4',
+          bg: '#FFF',
           text: '#333333',
-          'card': '#4a4a4f',
+          'card': '#f1f1f1',
           'modal': '#373950',
         },
         dark: {

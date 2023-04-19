@@ -5,38 +5,38 @@ export interface Todo {
 }
 
 export interface TodoWOId {
-  label: string,
-  done: boolean,
+  label: Todo['label'],
+  done: Todo['done'],
 }
 
 export interface Filters {
-  active: Todo[] | Array,
-  completed: Todo[] | Array,
+  active: Todo[],
+  completed: Todo[],
 }
 
-export type FilterValue = 'active' | 'completed';
-
 export type Modal = {
-  content: Todo[] | null,
-  resetModal: any,
-  onAction: any,
+  content?: Todo[],
+  resetModal: () => void,
+  onAction: (todos: Todop[]) => void,
 }
 
 export type Card = {
   children: React.ReactElement,
-  footer?: React.ReactElement,
 }
 
 export type CardRowContent = {
   children: React.ReactElement | string,
-  isDone?: boolean,
+  checkboxName: string,
+  done?: boolean,
   actionable?: boolean,
-  onAction?: any,
+  onAction?: () => void,
 }
 
-export type ThemeToggle = {
-  onClick: any,
-  theme: string,
+export type Checkbox = {
+  checked: CardRowContent['done'],
+  onAction: CardRowContent['onAction']
+  name: CardRowContent['checkboxName'],
+  className: string,
 }
 
 export type TodoList = {
@@ -50,12 +50,12 @@ export type TodoItem = {
 export type CardFooter = {
   length: number,
   filterApplied: string,
-  setFilter: any,
+  setFilter: (value: string) => void,
 }
 
 export type CardFooterAction = {
   isActive: boolean,
   label: string,
-  onClick: any,
+  onClick: CardFooter['setFilter'],
   disabled?: boolean,
 }
