@@ -34,7 +34,7 @@ const Home = ({ list }: TodoList) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex place-items-center absolute top-0 left-0 w-full h-64 overflow-hidden opacity-90 md:h-72">
-        <div className='relative w-full h-full'>
+        <div className='relative w-full h-64 md:h-72 overflow-hidden'>
           <div className='w-full h-full z-10 absolute bg-gradient-to-r from-blue-80 to-purple-80' />
           <Image
             className="relative"
