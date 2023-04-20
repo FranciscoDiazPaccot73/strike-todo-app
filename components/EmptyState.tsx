@@ -7,7 +7,7 @@ const EmptyState = () => {
   }
 
   return (
-    <p className="text-white text-sm h-14 flex items-center justify-center">
+    <p className="text-black text-sm h-14 flex items-center justify-center dark:text-white">
       {EMPTY_STATE.TEXT}
       <span>
         <button aria-label="Create first task" className="ml-2 font-bold underline" onClick={handleClick}>{EMPTY_STATE.LINK_TEXT}</button>
