@@ -1,8 +1,16 @@
+import { FC } from "react";
 import clsx from "clsx";
 
-import { CardFooterAction } from "@pages/types";
+import { CardFooterProps } from "./CardFooter";
 
-const CardFooterAction = ({ isActive, label, onClick, disabled }: CardFooterAction) => {
+type CardFooterActionProps = {
+  isActive: boolean
+  label: string
+  onClick: CardFooterProps['setFilter']
+  disabled?: boolean
+}
+
+const CardFooterAction: FC<CardFooterActionProps> = ({ isActive, label, onClick, disabled }) => {
   const buttonClasses = clsx({
     "text-black dark:text-white": isActive,
     "cursor-not-allowed": disabled,

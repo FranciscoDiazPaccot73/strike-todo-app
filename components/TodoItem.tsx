@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { RoughNotation } from "react-rough-notation";
 import clsx from "clsx";
 
@@ -7,9 +7,13 @@ import CardRowContent from "./CardRowContent";
 import { PageContext } from "@store/index";
 import { updateInfo, setModalContent } from "@store/actions";
 import { ITEM } from "./utils/constants";
-import { TodoItem } from "@pages/types";
+import { Todo } from "@pages/types";
 
-const TodoItem = ({ item }: TodoItem) => {
+type TodoItemProps = {
+  item: Todo
+}
+
+const TodoItem: FC<TodoItemProps> = ({ item }) => {
   const { dispatch } = useContext(PageContext);
   const itemLabelClasses = clsx("overflow-hidden text-ellipsis whitespace-nowrap ml-4", {
     "text-gray-disabled": item?.done,
