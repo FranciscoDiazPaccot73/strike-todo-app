@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer, createContext } from 'react';
+import React, { useMemo, useReducer, createContext, FC, PropsWithChildren } from 'react';
 
 import { reducer, init } from './reducers';
 import { AppContextType } from './types';
@@ -17,7 +17,7 @@ export const contextDefaultValues = {
 
 export const PageContext = createContext<AppContextType>(contextDefaultValues);
 
-const PageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const PageProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {}, init);
 
   const contextValue = useMemo(
