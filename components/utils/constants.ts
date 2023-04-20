@@ -27,6 +27,8 @@ export const MODAL = {
 
 export const INPUT_CONFIRM = 'Create';
 
+export const INPUT_PLACEHOLDER = 'Create Todo';
+
 export const ITEM = {
   ROUGH_COLOR: '#767783',
   ACTION_LABEL: 'Remove'

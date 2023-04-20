@@ -37,7 +37,7 @@ const CardFooter = ({ length, filterApplied, setFilter }: CardFooter) => {
         <CardFooterAction disabled={isActiveDisabled} isActive={isActive(filterApplied,'active')} label={FILTER_ACTION_LABELS.ACTIVE} onClick={setFilter} />
         <CardFooterAction disabled={isCompleteDisabled} isActive={isActive(filterApplied,'completed')} label={FILTER_ACTION_LABELS.COMPLETED} onClick={setFilter} />
       </div>
-      <button {...buttonAriaProps} onClick={handleBulkDelete} className={bulkClasses}>{BULK_DELETE_BUTTON}</button>
+      <button {...buttonAriaProps} disabled={isCompleteDisabled} onClick={handleBulkDelete} className={bulkClasses}>{BULK_DELETE_BUTTON}</button>
     </div>
   )
 }

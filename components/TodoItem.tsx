@@ -35,7 +35,7 @@ const TodoItem = ({ item }: TodoItem) => {
             {item?.label}
           </RoughNotation>
         </p>
-        <button aria-label={`Remove ${item?.label}`} onClick={handleDeteleDoc} className="text-gray-disabled ml-auto pl-3 hover:text-black dark:hover:text-white">
+        <button aria-label={`Remove ${item?.label}`} onClick={handleDeteleDoc} className="relative text-gray-disabled ml-auto pl-3 hover:text-black dark:hover:text-white">
           {ITEM.ACTION_LABEL}
         </button>
       </div>
