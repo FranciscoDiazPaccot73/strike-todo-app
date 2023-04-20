@@ -1,9 +1,16 @@
+import { FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { Modal, Todo } from "@pages/types";
+import { Todo } from "@pages/types";
 import { MODAL } from "./utils/constants";
 
-const Modal = ({ content, resetModal, onAction = () => {} }: Modal) => {
+type ModalProps = {
+  content?: Todo[]
+  resetModal: () => void
+  onAction: (todos: Todo[]) => void
+}
+
+const Modal: FC<ModalProps> = ({ content, resetModal, onAction = () => {} }) => {
   const handleAction = () => content && onAction(content);
   
   return (

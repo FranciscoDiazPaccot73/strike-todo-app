@@ -1,15 +1,20 @@
-import { useContext } from 'react';
+import { useContext, FC } from 'react';
 import clsx from 'clsx';
 
 import CardFooterAction from "./CardFooterAction";
 
 import { BULK_DELETE_BUTTON, FILTER_ACTION_LABELS, REMAINING_LABEL } from './utils/constants';
-import { CardFooter } from "@pages/types";
 import { PageContext } from "@store/index";
 import { setModalContent } from '@store/actions';
 import { isActive } from '@/utils';
 
-const CardFooter = ({ length, filterApplied, setFilter }: CardFooter) => {
+export type CardFooterProps = {
+  length: number
+  filterApplied: string
+  setFilter: (value: string) => void
+}
+
+const CardFooter: FC<CardFooterProps> = ({ length, filterApplied, setFilter }) => {
   const { dispatch, state: { isFetching, doneTasks, remainingLength } } = useContext(PageContext);
   const isActiveDisabled = isFetching || remainingLength === 0;
   const isCompleteDisabled = isFetching || !doneTasks.length;
