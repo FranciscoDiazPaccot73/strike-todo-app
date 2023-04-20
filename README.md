@@ -35,9 +35,12 @@ Una vez se haya hecho clone/fork del proyecto, correr `yarn` o `npm i` para pode
 
 ## Puntos a mencionar sobre el challenge.
 - No se realiza una persistencia en la DB del ordenamiento elegido, ya que se entendio que es un procesamiento muy pesado para que este en un frontend.
-- Se hace uso del concepto de "optimistic update" para el update y delete de tareas. Se realiza dentro de las posibilidades que brinda la libreria utilizada de firebase sobre el tema.
+- Dada la simplicidad de la app y la confianza que brinda el servicio de firebase, se hace uso del concepto de "optimistic update" para el update y delete de tareas (no se incluye en add, ya que se usa el id que genera Firebase para el documento). Se realiza dentro de las posibilidades que brinda la libreria utilizada de firebase sobre el tema.
 - Si bien se usa por defecto el dark Mode, se persiste el ultimo modo elegido por el usuario.
-- Se intento realizar la aplicacion de la manera mas accesible posible desde teclado y screen readers.
+- Se intento realizar la aplicacion de la manera mas accesible posible desde teclado y para screen readers.
+- Se agregan test unitarios para algunos componentes funcionales usando la liberia `testing-library/react`. No estan todos los componentes cubiertos ni los servicios hacia firebase.
+- Se utilizo Firebase por su simplicidad de uso, pero se habia desarrollado una app en node con una imagen de docker con mongo, pero vercel no permite deploy de imagenes de docker y el resto de servicios gratuitos, como Heroku, tienen una durabilidad de 15 minutos las instancias vivas, antes de desactivarlas por falta de trafico.
+- Se usa context api para el manejo de estados globales, ya que por la simplicidad de la app no se vio necesario incluir una libreria externa para esto.
 - Esta aplicación intenta estar enfocada en la performance y obtener una buenas métricas de web vital en su carga inicial.
 
 
