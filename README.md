@@ -79,7 +79,9 @@ project
 
 
 ## Metricas de la app en su version desktop.
-<img width="626" alt="Screen Shot 2023-04-19 at 18 38 11" src="https://user-images.githubusercontent.com/55720334/233206291-3c3e20fd-f787-4b1a-b59e-686243963029.png">
+<img width="564" alt="Screen Shot 2023-04-20 at 18 07 03" src="https://user-images.githubusercontent.com/55720334/233488024-db5e8ab5-7a6a-4ab5-acc1-7d316074da45.png">
+
 
 ## Metricas de la app en su mersion mobile.
-<img width="626" alt="Screen Shot 2023-04-19 at 18 38 41" src="https://user-images.githubusercontent.com/55720334/233206350-04721c5c-ae13-42b0-95fc-5ec995dc70db.png">
+<img width="564" alt="Screen Shot 2023-04-20 at 18 07 50" src="https://user-images.githubusercontent.com/55720334/233488055-9c240e13-b655-4338-92b7-e3d9ac98d1c4.png">
+
