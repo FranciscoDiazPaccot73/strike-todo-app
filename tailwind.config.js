@@ -27,7 +27,7 @@ module.exports = {
           bg: '#FFF',
           text: '#333333',
           'card': '#f1f1f1',
-          'modal': '#373950',
+          'modal': '#f1f1f1',
         },
         dark: {
           bg: '#1E1E1E',

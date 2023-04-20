@@ -20,7 +20,7 @@ const CardFooterAction = ({ isActive, label, onClick, disabled }: CardFooterActi
   }
 
   return (
-    <button {...footerActionArias} className={buttonClasses} onClick={handleClick}>
+    <button {...footerActionArias} className={buttonClasses} disabled={disabled} onClick={handleClick}>
       {label}
     </button>
   )

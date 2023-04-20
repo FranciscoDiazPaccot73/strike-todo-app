@@ -6,7 +6,7 @@ import CardRowContent from './CardRowContent';
 
 import { PageContext } from "@store/index";
 import { createNewDoc } from '@store/actions';
-import { INPUT_CONFIRM } from './utils/constants';
+import { INPUT_CONFIRM, INPUT_PLACEHOLDER } from './utils/constants';
 
 const NewTodo = () => {
   const { dispatch, state: { isFetching } } = useContext(PageContext);
@@ -46,7 +46,7 @@ const NewTodo = () => {
             className='w-full overflow-hidden text-md shadow-none border-none bg-transparent outline-none text-black dark:text-white rounded-md pr-20 pl-3 md:py-1 md:hover:bg-light-bg dark:md:hover:bg-dark-bg'
             value={inputValue}
             onChange={handleChange}
-            placeholder="Create a new ToDo"
+            placeholder={INPUT_PLACEHOLDER}
             readOnly={isFetching}
             onKeyUp={createOnEnter}
           />

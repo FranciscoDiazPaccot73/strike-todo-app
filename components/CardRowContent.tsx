@@ -18,7 +18,7 @@ const CardRowContent = ({ checkboxName, done, children, actionable, onAction = (
   return (
     <div className="w-full h-full p-4 flex items-center gap-3 relative bg-light-card dark:bg-dark-card md:gap-4">
       <div className={actionableClasses}>
-        <Checkbox name={checkboxName} onAction={onAction} className={contentClasses} checked={done} />
+        <Checkbox name={checkboxName} onAction={onAction} disabled={!actionable} className={contentClasses} checked={done} />
       </div>
       {children}
     </div>

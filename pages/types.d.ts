@@ -36,6 +36,7 @@ export type Checkbox = {
   checked: CardRowContent['done'],
   onAction: CardRowContent['onAction']
   name: CardRowContent['checkboxName'],
+  disabled: boolean,
   className: string,
 }
 

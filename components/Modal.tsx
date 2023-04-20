@@ -26,7 +26,7 @@ const Modal = ({ content, resetModal, onAction = () => {} }: Modal) => {
             <button
               aria-label="Close modal"
               onClick={resetModal}
-              className="absolute top-0 right-0 -mt-4 -mr-4 bg-light-modal text-white border border-slate-600 h-8 w-8 block mb-2 rounded-full dark:bg-dark-modal"
+              className="absolute top-0 right-0 -mt-4 -mr-4 bg-light-modal text-black border border-slate-600 h-8 w-8 block mb-2 rounded-full dark:text-white dark:bg-dark-modal"
             >
               &times;
             </button>
@@ -41,7 +41,7 @@ const Modal = ({ content, resetModal, onAction = () => {} }: Modal) => {
                 <button
                   aria-label="Confirm remove done tasks"
                   onClick={handleAction}
-                  className="ml-auto px-2 py-1 rounded-md hover:bg-light-card dark:text-white hover:dark:bg-dark-card"
+                  className="ml-auto px-2 py-1 rounded-md hover:bg-light-bg dark:text-white hover:dark:bg-dark-card"
                 >
                   {MODAL.ACTION}
                 </button>

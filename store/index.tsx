@@ -3,7 +3,7 @@ import React, { useMemo, useReducer, createContext } from 'react';
 import { reducer, init } from './reducers';
 import { AppContextType } from './types';
 
-const contextDefaultValues = {
+export const contextDefaultValues = {
   state: {
     list: [],
     listFiltered: [],
