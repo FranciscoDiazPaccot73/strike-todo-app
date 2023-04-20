@@ -33,6 +33,40 @@ Una vez se haya hecho clone/fork del proyecto, correr `yarn` o `npm i` para pode
   yarn test:coverage
 ```
 
+## Arquitectura basica de archivos
+```
+project
+└───components
+│   │   __tests__
+|   |   Footer.tsx
+|   |   ...
+│   │
+│   └───utils
+│       │   constants.ts
+|
+└───pages
+|   │   _app.tsx
+|   │   _document.tsx
+|   │   index.tsx
+|
+└───services
+|   │   firebase.ts
+|
+└───store
+|   │   actions.ts
+|   │   index.tsx
+|   │   reducers.ts
+|
+└───styles
+|   │   globals.scss
+|
+└───utils
+|   │   constants.ts
+|   │   index.ts
+|
+└───firebaseConfig.js
+```
+
 ## Puntos a mencionar sobre el challenge.
 - No se realiza una persistencia en la DB del ordenamiento elegido, ya que se entendio que es un procesamiento muy pesado para que este en un frontend.
 - Dada la simplicidad de la app y la confianza que brinda el servicio de firebase, se hace uso del concepto de "optimistic update" para el update y delete de tareas (no se incluye en add, ya que se usa el id que genera Firebase para el documento). Se realiza dentro de las posibilidades que brinda la libreria utilizada de firebase sobre el tema.
